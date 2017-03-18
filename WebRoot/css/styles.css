@@ -1,0 +1,130 @@
+/*超链接格式*/
+a
+{
+	color: #FFFFFF;
+}
+/* 导航页header.jsp */
+.headerTable
+{
+	width:100%;
+	border-style:solid;
+	border-color:blue;
+}
+.headerTd1
+{
+	background-color:#CCCCFF;
+	text-align:center;
+}
+.headerTd2
+{
+	background-color: #009999;
+}
+.headerTd2 a
+{
+	color:#000000;
+}
+.headerH1
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-large;
+}
+.welcome
+{
+	text-align:right;
+}
+
+.headerTable
+{
+	width:100%;
+	background-color: #EEEEFF;
+	border:1px solid blue;
+	/*设置边框为单一线*/
+	border-collapse:collapse;
+}
+.tdWhiteLine
+{
+	height:10px;
+	border:1px solid blue;
+}
+.tdHeader
+{
+	background-color:#CCCCFF;
+	font-size: 20px;
+	border:1px solid blue;
+}
+.tdHeaderP
+{
+	background-color:blue;
+	font-size: 20px;
+	border:1px solid blue;
+}
+.tdFormLabel
+{
+	text-align:right;
+	border:1px solid blue;
+}
+.tdFormControl
+{
+	border:1px solid blue;
+}
+.fontError
+{
+	color:red;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.text
+{
+	width:400px;
+}
+.btn
+{
+	width:80px;
+	height:25px;
+	padding-top:1px;
+}
+.tdListHeader
+{
+	background-color:#0066CC;
+	border:1px solid blue;
+}
+.tdList
+{
+	border:1px solid blue;
+}
+.tdList a
+{
+	color:#0033CC;
+}
+.tdDesignSurvey
+{
+	background-color: #0033FF;
+	color:#FFFFFF;
+}
+.simpleTable
+{
+	width:100%;
+	border:1px solid blue;
+	/*设置边框为单一线*/
+	border-collapse:collapse;
+}
+.tdDesignPage
+{
+	background-color:#0066FF;
+	color:#FFFFFF;
+}
+.tdDesignPage a
+{
+	color:#FFFFFF;
+}
+.tdDesignQuestion
+{
+	background-color: #6633FF;
+	color:#FFFFFF;
+}
+.tdDesignQuestion a
+{
+	color:#FFFFFF;
+}
+
+
+	

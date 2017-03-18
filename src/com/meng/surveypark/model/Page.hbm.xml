@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.meng.surveypark.model">
+	<class name="Page" table="pages">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="title" column="title" type="string" length="50"></property>
+		<property name="description" column="description" type="string" length="50"></property>
+		<property name="orderno" type="float">
+			<column name="orderno" sql-type="decimal(10,5)"></column>
+		</property>
+
+		<!--映射从 Page 到  Survey 的多对一关联关系  -->
+		<many-to-one name="survey" class="Survey" column="survey_id"></many-to-one>
+		
+		<!-- 映射从 Page 到  Question 的一对多关联关系，设置 inverse 为 true 使 Page 不维护关系-->
+		<set name="questions" inverse="true" order-by="id">
+			<key column="page_id"></key>
+			<one-to-many class="Question"/>
+		</set>
+	</class>
+</hibernate-mapping>

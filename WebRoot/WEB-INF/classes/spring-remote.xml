@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- service导出器，将pojo转化成spring需要的controller对象 -->
+	<bean id="/ss.service" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="serviceInterface">
+			<value>com.meng.surveypark.service.StatisticsService</value>
+		</property>
+		<property name="service" ref="statisticsService"></property>
+	</bean>
+</beans>

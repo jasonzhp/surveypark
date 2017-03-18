@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.meng.surveypark.model">
+	<class name="Survey" table="surveys">
+		<id name="id" column="id" type="integer">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="title" column="title" type="string" length="50"></property>
+		<property name="preText" column="pre_text" type="string" length="50"></property>
+		<property name="nextText" column="next_text" type="string" length="50"></property>
+		<property name="exitText" column="exit_text" type="string" length="50"></property>
+		<property name="doneText" column="done_text" type="string" length="50"></property>
+		<property name="createTime" column="create_time" type="timestamp" update="true"></property>
+		
+		<!-- 这里update="false"，阻止的只是session的update方法和saveOrupdate方法，而不会阻止手动的hql更新 -->
+		<property name="closed" column="closed" type="boolean" update="false"></property>
+		
+		<property name="logoPhotoPath" column="logo_photo_path" type="string" length="200" update="false"></property>
+		<property name="minOrderno" formula="(select min(p.orderno) from pages p where p.survey_id = id)"></property>
+		<property name="maxOrderno" formula="(select max(p.orderno) from pages p where p.survey_id = id)"></property>
+		
+		<!-- 映射从 Survey 到 User 的多对一的关联关系 -->
+		<many-to-one name="user" class="User" column="user_id"></many-to-one>
+		
+		<!-- 映射从Survey到Pages之间一对多关联关系,设置 inverse 为 true 使 Survey 不维护关系 -->
+		<set name="Pages" inverse="true" order-by="orderno">
+			<key column="survey_id"></key>
+			<one-to-many class="Page"></one-to-many>
+		</set>
+		
+	</class>
+</hibernate-mapping>

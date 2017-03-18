@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.meng.surveypark.model.log">
+	<class name="Log" table="logs">
+		<!-- uuid作为主键，避免连接两个表时有相同的id，造成表显示不全 -->
+		<id name="id" column="id" type="string">
+			<generator class="uuid"></generator>
+		</id>
+		
+		<property name="operator" column="operator" type="string" length="100"></property>
+		<property name="operateName" column="operate_name" type="string" length="100"></property>
+		<property name="operateParams" column="operate_params" type="string" length="500"></property>
+		<property name="operateResult" column="operate_result" type="string" length="50"></property>
+		<property name="resultMsg" column="result_msg" type="string" length="500"></property>
+		<property name="operateTime" column="operate_time" type="timestamp"></property>
+	</class>
+</hibernate-mapping>

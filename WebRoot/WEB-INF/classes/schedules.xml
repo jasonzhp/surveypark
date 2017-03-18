@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="createLogTableTask" class="com.meng.surveypark.schedule.CreateLogTableTask">
+		<property name="logService" ref="logService"></property>
+	</bean>
+
+	<!-- 任务明细bean -->
+	<bean id="jobDetailFactory" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="createLogTableTask"></property>
+		<property name="targetMethod" value="executeTask"></property>
+		<!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->
+		<property name="concurrent" value="false"></property>
+	</bean>
+	
+	<!-- cron触发器bean，设置石英任务的调度策略 -->
+	<bean name="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetailFactory"></property>
+		<!-- cron表达式，  秒   分钟   时   天   月   星期   年， 年可不设置 -->
+		<property name="cronExpression">
+			<value>0 0 0 15 * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 调度工厂bean，触发触发器 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger"></ref>
+			</list>
+		</property>
+	</bean>
+</beans>

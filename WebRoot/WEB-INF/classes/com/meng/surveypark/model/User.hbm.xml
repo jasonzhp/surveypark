@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.meng.surveypark.model">
+	<class name="User" table="users">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="nickName" column="nick_name" type="string" length="50"></property>
+		<property name="password" column="password" type="string" length="50"></property>
+		<property name="email" column="email" type="string" length="50"></property>
+		<property name="regDate" column="reg_date" type="timestamp" update="false"></property>
+		
+		<!-- 实现user到role的多对多的关联关系 -->
+		<set name="roles" table="user_role_link" lazy="false">
+			<key column="user_id"></key>
+			<many-to-many class="com.meng.surveypark.model.security.Role" column="role_id"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

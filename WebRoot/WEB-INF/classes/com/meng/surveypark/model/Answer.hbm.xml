@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.meng.surveypark.model">
+	<class name="Answer" table="answers">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="answerId" column="answer_id" type="string" length="500"></property>
+		<property name="otherAnswer" column="other_answer" type="string" length="100"></property>
+		<property name="uuid" column="uuid" type="string" length="50"></property>
+		<property name="answerTime" column="answer_time" type="timestamp" update="false"></property>
+		
+		<property name="surveyId" column="survey_id" type="integer" length="50"></property>
+		<property name="questionId" column="question_id" type="integer" length="50"></property>
+	</class>
+</hibernate-mapping>

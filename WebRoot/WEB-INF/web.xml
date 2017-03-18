@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>surveypark</display-name>
+  
+  <!-- 该过滤器在 view 渲染时始终开启 session,一劳永逸的解决了 hibernate 懒加载的问题
+  		该过滤器必须在 struts2 过滤器之前
+  		不推荐使用(性能问题) 
+  <filter>
+  	<filter-name>openSessionInViewFilter</filter-name>
+  	<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>openSessionInViewFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  -->
+
+  <!-- 配置struts2过滤器 -->
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 通过上下文参数配置spring文件的位置 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:beans.xml, classpath:schedules.xml</param-value>
+  </context-param>
+  
+  <!-- 上下文载入器，确保web服务器启动时，直接完成spring容器的初始化
+  		将spring容器存放在Application中，ApplicationContext的key为ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- 配置spring的远程调用 -->
+  <servlet>
+  	<servlet-name>service</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath:spring-remote.xml</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>service</servlet-name>
+  	<url-pattern>*.service</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
