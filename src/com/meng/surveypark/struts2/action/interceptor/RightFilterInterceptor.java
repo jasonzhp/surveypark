@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionProxy;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
-//µÇÂ¼À¹½ØÆ÷
+//ç™»å½•æ‹¦æˆªå™¨
 public class RightFilterInterceptor implements Interceptor {
 
 	private static final long serialVersionUID = -1523469947816412432L;

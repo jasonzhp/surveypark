@@ -25,7 +25,7 @@ public class CatchUrlInterceptor implements Interceptor {
 
 	public String intercept(ActionInvocation invocation) throws Exception {
 		ActionProxy proxy = invocation.getProxy();
-		String namespace = proxy.getNamespace();	//ÃüÃû¿Õ¼ä
+		String namespace = proxy.getNamespace();	//å‘½åç©ºé—´
 		String actionName = proxy.getActionName();	//actionName
 		if(!ValidateUtil.isValidate(namespace)
 				|| namespace.equals("/"))
@@ -34,9 +34,9 @@ public class CatchUrlInterceptor implements Interceptor {
 		}
 		String url = namespace + "/" + actionName;
 		
-//		//È¡µÃapplicationÖĞµÄspringÈİÆ÷£¬¿ÉÓÃÒÔÏÂ·½·¨
+//		//å–å¾—applicationä¸­çš„springå®¹å™¨ï¼Œå¯ç”¨ä»¥ä¸‹æ–¹æ³•
 ////	ApplicationContext ac = (ApplicationContext) invocation.getInvocationContext().getApplication().get(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-//		//Ò²¿ÉÒÔÓÃÏÂÃæµÄ·½·¨
+//		//ä¹Ÿå¯ä»¥ç”¨ä¸‹é¢çš„æ–¹æ³•
 		ServletContext sc = ServletActionContext.getServletContext();
 		ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(sc);
 		

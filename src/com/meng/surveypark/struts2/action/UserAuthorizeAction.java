@@ -28,20 +28,20 @@ public class UserAuthorizeAction extends BaseAction<User> {
 	
 	private Integer userId;
 	
-	//ÊôÓÚ¸ÃÓÃ»§µÄ½ÇÉ«id
+	//å±äºè¯¥ç”¨æˆ·çš„è§’è‰²id
 	private Integer[] ownRoleIds;
 	
-	//²»ÊôÓÚ¸ÃÓÃ»§µÄ½ÇÉ«
+	//ä¸å±äºè¯¥ç”¨æˆ·çš„è§’è‰²
 	private List<Role> noOwnRoles;
 	
-	//²éÕÒËùÓĞµÄÓÃ»§ÊÚÈ¨
+	//æŸ¥æ‰¾æ‰€æœ‰çš„ç”¨æˆ·æˆæƒ
 	public String findAllUsers()
 	{
 		this.allUsers = userService.findAllEntities();
 		return "userAuthorizeListPage";
 	}
 	
-	//ĞŞ¸ÄÓÃ»§ÊÚÈ¨
+	//ä¿®æ”¹ç”¨æˆ·æˆæƒ
 	public String editUserAuthorize()
 	{
 		this.model = userService.getEntity(userId);
@@ -49,14 +49,14 @@ public class UserAuthorizeAction extends BaseAction<User> {
 		return "editUserAuthorizePage";
 	}
 	
-	//¸üĞÂÓÃ»§È¨ÏŞ£¨Ö»ÄÜ¸üĞÂ½ÇÉ«ÉèÖÃ£©
+	//æ›´æ–°ç”¨æˆ·æƒé™ï¼ˆåªèƒ½æ›´æ–°è§’è‰²è®¾ç½®ï¼‰
 	public String updateUserAuthorize()
 	{
 		userService.updateUserAuthorize(model, ownRoleIds);
 		return "findUserAuthorizeListAction";
 	}
 	
-	//Çå³ıÓÃ»§ÊÚÈ¨
+	//æ¸…é™¤ç”¨æˆ·æˆæƒ
 	public String clearUserAuthorize()
 	{
 		userService.clearUserAuthorize(userId);
